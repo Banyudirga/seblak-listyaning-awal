@@ -9,11 +9,13 @@ import { PosLayout } from "@/components/layout/PosLayout";
 import Login from "./pages/Login";
 import Pos from "./pages/Pos";
 import Inventory from "./pages/Inventory";
+import Purchases from "./pages/Purchases";
 import Receipts from "./pages/Receipts";
 import Shifts from "./pages/Shifts";
 import Users from "./pages/Users";
 import Customers from "./pages/Customers";
 import Settings from "./pages/Settings";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -33,11 +35,13 @@ const App = () => (
             <Route element={<PosLayout />}>
               <Route path="/pos" element={<Pos />} />
               <Route path="/inventory" element={<Inventory />} />
+              <Route path="/purchases" element={<Purchases />} />
               <Route path="/receipts" element={<Receipts />} />
               <Route path="/shifts" element={<Shifts />} />
               <Route path="/customers" element={<Customers />} />
               <Route path="/users" element={<Users />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/dashboard" element={<Dashboard />} />
             </Route>
             
             {/* Catch-all route */}

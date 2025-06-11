@@ -39,6 +39,41 @@ export interface OrderItem {
   quantity: number;
 }
 
+export interface Supplier {
+  id: string;
+  name: string;
+  contact: string;
+  email?: string;
+  address?: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface PurchaseItem {
+  id: string;
+  item_name: string;
+  quantity: number;
+  unit: string;
+  unit_price: number;
+  total_price: number;
+  inventory_item_id?: string; // Link to existing inventory item if exists
+}
+
+export interface Purchase {
+  id: string;
+  supplier_id: string;
+  supplier_name: string;
+  supplier_contact: string;
+  purchase_date: string;
+  invoice_number: string;
+  items: PurchaseItem[];
+  total_amount: number;
+  notes?: string;
+  created_by: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Order {
   id: string;
   orderNumber: string;
@@ -489,6 +524,122 @@ class LocalStorageHelper {
 
   public clearUser(): void {
     this.removeItem('user');
+  }
+
+  // Supplier methods
+  public getSuppliers(): Supplier[] {
+    const suppliers = this.getItem<Supplier[]>('suppliers');
+    return suppliers || [];
+  }
+
+  public addSupplier(supplier: Supplier): void {
+    const suppliers = this.getSuppliers();
+    suppliers.push(supplier);
+    this.setItem('suppliers', suppliers);
+  }
+
+  public updateSupplier(updatedSupplier: Supplier): void {
+    const suppliers = this.getSuppliers();
+    const index = suppliers.findIndex(supplier => supplier.id === updatedSupplier.id);
+    if (index !== -1) {
+      suppliers[index] = updatedSupplier;
+      this.setItem('suppliers', suppliers);
+    }
+  }
+
+  public deleteSupplier(id: string): void {
+    const suppliers = this.getSuppliers();
+    const filteredSuppliers = suppliers.filter(supplier => supplier.id !== id);
+    this.setItem('suppliers', filteredSuppliers);
+  }
+
+  // Purchase methods
+  public getPurchases(): Purchase[] {
+    const purchases = this.getItem<Purchase[]>('purchases');
+    return purchases || [];
+  }
+
+  public addPurchase(purchase: Purchase): void {
+    const purchases = this.getPurchases();
+    purchases.push(purchase);
+    this.setItem('purchases', purchases);
+
+    // Update inventory for each purchase item
+    this.updateInventoryFromPurchase(purchase);
+  }
+
+  public updatePurchase(updatedPurchase: Purchase): void {
+    const purchases = this.getPurchases();
+    const index = purchases.findIndex(purchase => purchase.id === updatedPurchase.id);
+    if (index !== -1) {
+      const oldPurchase = purchases[index];
+      purchases[index] = updatedPurchase;
+      this.setItem('purchases', purchases);
+
+      // Revert old inventory changes and apply new ones
+      this.revertInventoryFromPurchase(oldPurchase);
+      this.updateInventoryFromPurchase(updatedPurchase);
+    }
+  }
+
+  public deletePurchase(id: string): void {
+    const purchases = this.getPurchases();
+    const purchaseToDelete = purchases.find(purchase => purchase.id === id);
+    if (purchaseToDelete) {
+      // Revert inventory changes
+      this.revertInventoryFromPurchase(purchaseToDelete);
+
+      const filteredPurchases = purchases.filter(purchase => purchase.id !== id);
+      this.setItem('purchases', filteredPurchases);
+    }
+  }
+
+  private updateInventoryFromPurchase(purchase: Purchase): void {
+    const inventoryItems = this.getInventoryItems();
+
+    purchase.items.forEach(purchaseItem => {
+      // Find existing inventory item by name (case insensitive)
+      let existingItem = inventoryItems.find(item =>
+        item.name.toLowerCase() === purchaseItem.item_name.toLowerCase()
+      );
+
+      if (existingItem) {
+        // Update existing item quantity
+        existingItem.quantity += purchaseItem.quantity;
+        existingItem.updated_at = new Date().toISOString();
+        this.updateInventoryItem(existingItem);
+      } else {
+        // Create new inventory item
+        const newInventoryItem: InventoryItem = {
+          id: `inv-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          name: purchaseItem.item_name,
+          quantity: purchaseItem.quantity,
+          unit: purchaseItem.unit,
+          cost_price: purchaseItem.unit_price,
+          threshold_quantity: null,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+        this.addInventoryItem(newInventoryItem);
+      }
+    });
+  }
+
+  private revertInventoryFromPurchase(purchase: Purchase): void {
+    const inventoryItems = this.getInventoryItems();
+
+    purchase.items.forEach(purchaseItem => {
+      const existingItem = inventoryItems.find(item =>
+        item.name.toLowerCase() === purchaseItem.item_name.toLowerCase()
+      );
+
+      if (existingItem) {
+        // Reduce quantity (but don't go below 0)
+        existingItem.quantity = Math.max(0, existingItem.quantity - purchaseItem.quantity);
+        existingItem.updated_at = new Date().toISOString();
+        this.updateInventoryItem(existingItem);
+      }
+    });
   }
 }
 
