@@ -1,0 +1,128 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 354 83% 57%; /* Red */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 9%; /* Black */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 354 83% 57%; /* Red */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 354 83% 57%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 0%; /* Black */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 354 83% 57%; /* Red */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%; /* Dark Gray */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 354 83% 57%; /* Red */
+  }
+
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 3%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 354 83% 57%; /* Red */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 9%; /* Black */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 354 83% 57%; /* Red */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 354 83% 57%;
+    
+    --sidebar-background: 0 0% 0%; /* Black */
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 354 83% 57%; /* Red */
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 15%; /* Dark Gray */
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 354 83% 57%; /* Red */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-black text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-seblak text-seblak-red;
+  }
+}
+
+@layer components {
+  .pos-card {
+    @apply bg-seblak-black rounded-lg shadow-md p-4 border border-seblak-red;
+  }
+  
+  .pos-button {
+    @apply rounded-md px-4 py-2 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  
+  .pos-button-primary {
+    @apply bg-seblak-red text-white hover:bg-red-700 focus-visible:ring-red-500;
+  }
+  
+  .pos-button-secondary {
+    @apply bg-seblak-black text-white hover:bg-gray-800 focus-visible:ring-gray-700;
+  }
+  
+  .pos-input {
+    @apply border border-seblak-red rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-seblak-red focus:border-transparent;
+  }
+  
+  .seblak-gradient {
+    @apply bg-gradient-to-br from-seblak-black to-seblak-red;
+  }
+}
