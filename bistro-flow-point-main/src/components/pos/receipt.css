@@ -1,0 +1,67 @@
+/* Standard Receipt Paper Styling */
+.receipt-container {
+  /* 80mm is approximately 302px at 96dpi */
+  max-width: 302px !important;
+  width: 302px;
+  margin: 0 auto;
+  font-family: 'Courier New', monospace;
+  background-color: white;
+}
+
+/* When printing, set specific dimensions */
+@media print {
+  .receipt-container {
+    width: 80mm;
+    padding: 0;
+    margin: 0 auto;
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    color: black;
+    font-size: 10pt;
+  }
+  
+  .receipt-header {
+    display: none;
+  }
+  
+  .receipt-content {
+    padding: 0;
+  }
+  
+  /* Hide dialog footer when printing */
+  .dialog-footer {
+    display: none;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+  }
+  
+  /* Hide all other content when printing */
+  body > *:not(.receipt-container) {
+    display: none;
+  }
+}
+
+/* Font sizes for receipt */
+.receipt-content h3 {
+  font-size: 14pt;
+  margin: 0;
+}
+
+.receipt-content p {
+  font-size: 9pt;
+  margin: 2px 0;
+}
+
+.receipt-content .text-sm {
+  font-size: 9pt;
+}
+
+/* Spacing for thermal printer compatibility */
+.receipt-content div {
+  line-height: 1.3;
+}

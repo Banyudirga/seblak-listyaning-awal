@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Printer } from 'lucide-react';
+import './receipt.css';
 
 interface CartItem {
   id: string;
@@ -47,12 +48,12 @@ export const ReceiptDialog: React.FC<ReceiptDialogProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md print:shadow-none print:border-none">
-        <DialogHeader>
+      <DialogContent className="receipt-container print:shadow-none print:border-none">
+        <DialogHeader className="receipt-header">
           <DialogTitle>Struk</DialogTitle>
         </DialogHeader>
         
-        <div className="py-4">
+        <div className="py-4 receipt-content">
           <div className="text-center border-b pb-2 mb-2">
             <h3 className="font-bold text-lg">Nama Restoran</h3>
             <p className="text-sm">Jl. Restoran No. 123, Kota</p>
