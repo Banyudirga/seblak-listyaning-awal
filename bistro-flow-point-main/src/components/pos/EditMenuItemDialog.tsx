@@ -9,6 +9,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { toast } from '@/components/ui/sonner';
 import { localStorageHelper, LocalMenuItem } from '@/utils/localStorage';
 import { normalizeUnit } from '@/utils/unitConversion';
+import { Image } from 'lucide-react';
 
 interface EditMenuItemDialogProps {
   open: boolean;
@@ -29,6 +30,7 @@ export const EditMenuItemDialog: React.FC<EditMenuItemDialogProps> = ({
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [isAvailable, setIsAvailable] = useState(true);
   const [menuIngredients, setMenuIngredients] = useState<Array<{
     inventoryId: string, 
@@ -90,6 +92,14 @@ export const EditMenuItemDialog: React.FC<EditMenuItemDialogProps> = ({
       })));
     }
   }, [open, menuItemId]);
+  
+  useEffect(() => {
+    if (imageUrl) {
+      setImagePreview(imageUrl);
+    } else {
+      setImagePreview(null);
+    }
+  }, [imageUrl]);
   
   const handleAddMenuIngredient = () => {
     setMenuIngredients([...menuIngredients, { inventoryId: '', amount: '1', unit: '' }]);
@@ -175,6 +185,15 @@ export const EditMenuItemDialog: React.FC<EditMenuItemDialogProps> = ({
     }
   };
   
+  const handleImageUrlChange = (url: string) => {
+    setImageUrl(url);
+    setImagePreview(url);
+  };
+
+  const handleImageError = () => {
+    toast.error('Gambar tidak dapat dimuat');
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
@@ -248,9 +267,19 @@ export const EditMenuItemDialog: React.FC<EditMenuItemDialogProps> = ({
               <Input
                 id="image_url"
                 value={imageUrl}
-                onChange={(e) => setImageUrl(e.target.value)}
+                onChange={(e) => handleImageUrlChange(e.target.value)}
                 placeholder="URL gambar (opsional)"
               />
+              {imagePreview && (
+                <div className="mt-2">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="max-w-full h-auto border rounded"
+                    onError={handleImageError}
+                  />
+                </div>
+              )}
             </div>
             
             <div className="space-y-2">
