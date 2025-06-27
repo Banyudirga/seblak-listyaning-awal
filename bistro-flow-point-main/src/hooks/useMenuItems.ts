@@ -19,18 +19,18 @@ export interface MenuItem {
 
 // Category mapping (original DB names to display names)
 const categoryMapOrigToDisplay: Record<string, string> = {
-  'Makanan Utama': 'SEBLAK',
-  'Makanan Pendamping': 'MAKANAN',
-  'Minuman': 'MINUMAN',
-  'Makanan Penutup': 'CAMILAN'
+  'SEBLAK': 'SEBLAK',
+  'MAKANAN': 'MAKANAN',
+  'MINUMAN': 'MINUMAN',
+  'CAMILAN': 'CAMILAN'
 };
 
 // Category mapping (display names to original DB names)
 const categoryMapDisplayToOrig: Record<string, string> = {
-  'SEBLAK': 'Makanan Utama',
-  'MAKANAN': 'Makanan Pendamping',
-  'MINUMAN': 'Minuman',
-  'CAMILAN': 'Makanan Penutup'
+  'SEBLAK': 'SEBLAK',
+  'MAKANAN': 'MAKANAN',
+  'MINUMAN': 'MINUMAN',
+  'CAMILAN': 'CAMILAN'
 };
 
 export const useMenuItems = () => {

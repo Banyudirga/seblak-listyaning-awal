@@ -47,7 +47,7 @@ export const EditMenuItemDialog: React.FC<EditMenuItemDialogProps> = ({
   }>>([]);
   
   // Common measurement units
-  const commonUnits = ['g', 'kg', 'ml', 'l', 'pcs', 'buah', 'butir', 'lembar', 'botol'];
+  const commonUnits = ['g', 'kg', 'ml', 'l', 'pcs', 'buah', 'butir', 'lembar', 'BAL', 'botol'];
   
   // Load menu item data when dialog opens
   useEffect(() => {

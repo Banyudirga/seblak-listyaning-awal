@@ -31,10 +31,10 @@ interface MenuCategoriesProps {
 
 // Category mapping for display
 const categoryMap: Record<string, string> = {
-  'Makanan Utama': 'SEBLAK',
-  'Makanan Pendamping': 'MAKANAN',
-  'Minuman': 'MINUMAN',
-  'Makanan Penutup': 'CAMILAN'
+  'SEBLAK': 'SEBLAK',
+  'MAKANAN': 'MAKANAN',
+  'MINUMAN': 'MINUMAN',
+  'CAMILAN': 'CAMILAN'
 };
 
 // Sort order for categories

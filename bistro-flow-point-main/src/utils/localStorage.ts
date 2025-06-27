@@ -95,7 +95,7 @@ export interface LocalStorageUser {
 }
 
 class LocalStorageHelper {
-  private localStorageKey = 'seblak-listyaning';
+  private localStorageKey = 'seblak-listyaning-v2';
 
   // Helper function to set item in local storage
   private setItem<T>(key: string, value: T): void {
@@ -150,12 +150,12 @@ class LocalStorageHelper {
   // Get default menu items with proper food images
   private getDefaultMenuItems(): MenuItem[] {
     return [
-      // SEBLAK Category (Makanan Utama)
+      // SEBLAK Category (SEBLAK)
       {
         id: '1',
         name: 'Seblak Original',
         price: 15000,
-        category: 'Makanan Utama',
+        category: 'SEBLAK',
         image_url: 'https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=300&h=300&fit=crop&crop=center',
         description: 'Seblak dengan bumbu khas pedas, kerupuk, dan sayuran',
         is_available: true
@@ -164,7 +164,7 @@ class LocalStorageHelper {
         id: '2',
         name: 'Seblak Tulang',
         price: 20000,
-        category: 'Makanan Utama',
+        category: 'SEBLAK',
         image_url: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?w=300&h=300&fit=crop&crop=center',
         description: 'Seblak dengan tambahan tulang ayam yang gurih',
         is_available: true
@@ -173,7 +173,7 @@ class LocalStorageHelper {
         id: '3',
         name: 'Seblak Ceker',
         price: 18000,
-        category: 'Makanan Utama',
+        category: 'SEBLAK',
         image_url: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300&h=300&fit=crop&crop=center',
         description: 'Seblak dengan tambahan ceker ayam',
         is_available: true
@@ -182,7 +182,7 @@ class LocalStorageHelper {
         id: '4',
         name: 'Seblak Seafood',
         price: 25000,
-        category: 'Makanan Utama',
+        category: 'SEBLAK',
         image_url: 'https://images.unsplash.com/photo-1559847844-d721426d6edc?w=300&h=300&fit=crop&crop=center',
         description: 'Seblak dengan tambahan udang, cumi, dan bakso ikan',
         is_available: true
@@ -191,7 +191,7 @@ class LocalStorageHelper {
         id: '5',
         name: 'Seblak Mie',
         price: 17000,
-        category: 'Makanan Utama',
+        category: 'SEBLAK',
         image_url: 'https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=300&h=300&fit=crop&crop=center',
         description: 'Seblak dengan tambahan mie instan',
         is_available: true
@@ -202,7 +202,7 @@ class LocalStorageHelper {
         id: '6',
         name: 'Baso Aci',
         price: 15000,
-        category: 'Makanan Pendamping',
+        category: 'MAKANAN',
         image_url: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300&h=300&fit=crop&crop=center',
         description: 'Bakso dari tepung aci dengan kuah pedas',
         is_available: true
@@ -211,7 +211,7 @@ class LocalStorageHelper {
         id: '7',
         name: 'Cireng Rujak',
         price: 12000,
-        category: 'Makanan Pendamping',
+        category: 'MAKANAN',
         image_url: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=300&fit=crop&crop=center',
         description: 'Cireng dengan saus rujak pedas manis',
         is_available: true
@@ -220,7 +220,7 @@ class LocalStorageHelper {
         id: '8',
         name: 'Cimol',
         price: 10000,
-        category: 'Makanan Pendamping',
+        category: 'MAKANAN',
         image_url: 'https://images.unsplash.com/photo-1563379091339-03246963d29b?w=300&h=300&fit=crop&crop=center',
         description: 'Bola-bola tapioka yang garing di luar, lembut di dalam',
         is_available: true
@@ -229,7 +229,7 @@ class LocalStorageHelper {
         id: '9',
         name: 'Makaroni Goreng',
         price: 12000,
-        category: 'Makanan Pendamping',
+        category: 'MAKANAN',
         image_url: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?w=300&h=300&fit=crop&crop=center',
         description: 'Makaroni goreng dengan bumbu pedas',
         is_available: true
@@ -240,7 +240,7 @@ class LocalStorageHelper {
         id: '10',
         name: 'Es Teh Manis',
         price: 5000,
-        category: 'Minuman',
+        category: 'MINUMAN',
         image_url: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=300&h=300&fit=crop&crop=center',
         description: 'Teh manis dengan es batu',
         is_available: true
@@ -249,7 +249,7 @@ class LocalStorageHelper {
         id: '11',
         name: 'Es Jeruk',
         price: 7000,
-        category: 'Minuman',
+        category: 'MINUMAN',
         image_url: 'https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=300&h=300&fit=crop&crop=center',
         description: 'Air jeruk segar dengan es batu',
         is_available: true
@@ -258,7 +258,7 @@ class LocalStorageHelper {
         id: '12',
         name: 'Es Kelapa',
         price: 10000,
-        category: 'Minuman',
+        category: 'MINUMAN',
         image_url: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=300&h=300&fit=crop&crop=center',
         description: 'Air kelapa muda segar dengan es batu',
         is_available: true
@@ -267,7 +267,7 @@ class LocalStorageHelper {
         id: '13',
         name: 'Es Buah',
         price: 12000,
-        category: 'Minuman',
+        category: 'MINUMAN',
         image_url: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=300&fit=crop&crop=center',
         description: 'Campuran buah-buahan dengan sirup dan susu',
         is_available: true
@@ -276,7 +276,7 @@ class LocalStorageHelper {
         id: '14',
         name: 'Es Campur',
         price: 15000,
-        category: 'Minuman',
+        category: 'MINUMAN',
         image_url: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=300&h=300&fit=crop&crop=center',
         description: 'Campuran cincau, kolang-kaling, dan alpukat dengan susu',
         is_available: true
@@ -287,7 +287,7 @@ class LocalStorageHelper {
         id: '15',
         name: 'Kripik Singkong',
         price: 8000,
-        category: 'Makanan Penutup',
+        category: 'CAMILAN',
         image_url: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=300&fit=crop&crop=center',
         description: 'Keripik singkong renyah dengan berbagai rasa',
         is_available: true
@@ -296,7 +296,7 @@ class LocalStorageHelper {
         id: '16',
         name: 'Kripik Pisang',
         price: 8000,
-        category: 'Makanan Penutup',
+        category: 'CAMILAN',
         image_url: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=300&h=300&fit=crop&crop=center',
         description: 'Keripik pisang renyah dengan rasa manis',
         is_available: true
@@ -305,7 +305,7 @@ class LocalStorageHelper {
         id: '17',
         name: 'Kue Cubit',
         price: 10000,
-        category: 'Makanan Penutup',
+        category: 'CAMILAN',
         image_url: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=300&fit=crop&crop=center',
         description: 'Kue tradisional dengan berbagai topping',
         is_available: true
@@ -314,7 +314,7 @@ class LocalStorageHelper {
         id: '18',
         name: 'Pisang Goreng',
         price: 10000,
-        category: 'Makanan Penutup',
+        category: 'CAMILAN',
         image_url: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?w=300&h=300&fit=crop&crop=center',
         description: 'Pisang goreng crispy dengan toping keju atau coklat',
         is_available: true
